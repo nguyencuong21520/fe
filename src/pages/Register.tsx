@@ -5,22 +5,22 @@ import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { authService } from "../services/authService";
 
-const { Title } = Typography
+const { Title } = Typography;
 
 const Register = () => {
-  const [loading, setLoading] = useState(false)
-  const { setUser } = useAuth()
-  const navigate = useNavigate()
+  const [loading, setLoading] = useState(false);
+  const { setUser } = useAuth();
+  const navigate = useNavigate();
 
   const onFinish = async (values: {
-    name: string
-    email: string
-    password: string
-    confirmPassword: string
+    name: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
   }) => {
     if (values.password !== values.confirmPassword) {
-      message.error('Mật khẩu xác nhận không khớp!')
-      return
+      message.error("Mật khẩu xác nhận không");
+      return;
     }
 
     setLoading(true);
@@ -39,7 +39,7 @@ const Register = () => {
     } finally {
       setLoading(false);
     }
-  }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-4">
@@ -60,51 +60,44 @@ const Register = () => {
         >
           <Form.Item
             name="name"
-            rules={[{ required: true, message: 'Vui lòng nhập tên!' }]}
+            rules={[{ required: true, message: "Vui lòng nhập tên!" }]}
           >
-            <Input
-              prefix={<UserOutlined />}
-              placeholder="Họ và tên"
-            />
+            <Input prefix={<UserOutlined />} placeholder="Họ và tên" />
           </Form.Item>
 
           <Form.Item
             name="email"
             rules={[
-              { required: true, message: 'Vui lòng nhập email!' },
-              { type: 'email', message: 'Email không hợp lệ!' },
+              { required: true, message: "Vui lòng nhập email!" },
+              { type: "email", message: "Email không hợp lệ!" },
             ]}
           >
-            <Input
-              prefix={<MailOutlined />}
-              placeholder="Email"
-            />
+            <Input prefix={<MailOutlined />} placeholder="Email" />
           </Form.Item>
 
           <Form.Item
             name="password"
             rules={[
-              { required: true, message: 'Vui lòng nhập mật khẩu!' },
-              { min: 6, message: 'Mật khẩu phải có ít nhất 6 ký tự!' },
+              { required: true, message: "Vui lòng nhập mật khẩu!" },
+              { min: 6, message: "Mật khẩu phải có ít nhất 6 ký tự!" },
             ]}
           >
-            <Input.Password
-              prefix={<LockOutlined />}
-              placeholder="Mật khẩu"
-            />
+            <Input.Password prefix={<LockOutlined />} placeholder="Mật khẩu" />
           </Form.Item>
 
           <Form.Item
             name="confirmPassword"
-            dependencies={['password']}
+            dependencies={["password"]}
             rules={[
-              { required: true, message: 'Vui lòng xác nhận mật khẩu!' },
+              { required: true, message: "Vui lòng xác nhận mật khẩu!" },
               ({ getFieldValue }) => ({
                 validator(_, value) {
-                  if (!value || getFieldValue('password') === value) {
-                    return Promise.resolve()
+                  if (!value || getFieldValue("password") === value) {
+                    return Promise.resolve();
                   }
-                  return Promise.reject(new Error('Mật khẩu xác nhận không khớp!'))
+                  return Promise.reject(
+                    new Error("Mật khẩu xác nhận không khớp!")
+                  );
                 },
               }),
             ]}
@@ -135,8 +128,7 @@ const Register = () => {
         </div>
       </Card>
     </div>
-  )
-}
+  );
+};
 
-export default Register
-
+export default Register;
